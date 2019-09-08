@@ -10,33 +10,33 @@ type State struct {
 	name        string
 	isInitial   bool
 	isFinal     bool
-	transitions map[string]string
+	transitions map[string]*State
 }
 
 // Global variables
 var inputSymbols string
 var n int
-var states map[string]State
+var states map[string]*State
 
 func main() {
 	fmt.Println("Enter input symbols as a string (Each character is treated as an individual input symbol)")
 	fmt.Scanf("%s\n", &inputSymbols)
 	fmt.Print("Enter number of states\n")
 	fmt.Scanf("%d\n", &n)
-	states = make(map[string]State)
+	states = make(map[string]*State)
 	states = initStates()
 	inputTransitions()
 }
 
-func initStates() map[string]State {
-	states := make(map[string]State)
+func initStates() map[string]*State {
+	states := make(map[string]*State)
 	fmt.Print("The states are: ")
 	for i := 0; i < n; i++ {
-		states[getStateNameFromID(i)] = State{
+		states[getStateNameFromID(i)] = &State{
 			name:        getStateNameFromID(i),
 			isFinal:     false,
 			isInitial:   false,
-			transitions: make(map[string]string),
+			transitions: make(map[string]*State),
 		}
 		fmt.Print(getStateNameFromID(i) + ", ")
 	}
@@ -57,7 +57,7 @@ func inputTransitions() {
 			//TODO: Check if input string is valid
 			_, stateExists := states[destinationState]
 			if stateExists {
-				states[getStateNameFromID(i)].transitions[inpString] = destinationState
+				states[getStateNameFromID(i)].transitions[inpString] = states[destinationState]
 			} else {
 				fmt.Println("Invalid state")
 				j--
