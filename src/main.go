@@ -32,13 +32,13 @@ func initStates() map[string]State {
 	states := make(map[string]State)
 	fmt.Print("The states are: ")
 	for i := 0; i < n; i++ {
-		states["q"+strconv.Itoa(i+1)] = State{
-			name:        "q" + strconv.Itoa(i+1),
+		states[getStateNameFromID(i)] = State{
+			name:        getStateNameFromID(i),
 			isFinal:     false,
 			isInitial:   false,
 			transitions: make(map[string]string),
 		}
-		fmt.Print("q" + strconv.Itoa(i+1) + ", ")
+		fmt.Print(getStateNameFromID(i) + ", ")
 	}
 	fmt.Println()
 	return states
