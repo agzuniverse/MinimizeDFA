@@ -14,13 +14,13 @@ type State struct {
 }
 
 // Global variables
-var vocab string
+var inputSymbols string
 var n int
 var states map[string]State
 
 func main() {
-	fmt.Println("Enter Vocabulary")
-	fmt.Scanf("%s\n", &vocab)
+	fmt.Println("Enter input symbols as a string (Each character is treated as an individual input symbol)")
+	fmt.Scanf("%s\n", &inputSymbols)
 	fmt.Print("Enter number of states\n")
 	fmt.Scanf("%d\n", &n)
 	states = make(map[string]State)
