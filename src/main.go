@@ -10,7 +10,7 @@ type State struct {
 	name        string
 	isInitial   bool
 	isFinal     bool
-	transitions map[string]State
+	transitions map[string]string
 }
 
 // Global variables
@@ -26,7 +26,6 @@ func main() {
 	states = make(map[string]State)
 	states = initStates()
 	inputTransitions()
-	fmt.Println(states)
 }
 
 func initStates() map[string]State {
@@ -36,7 +35,7 @@ func initStates() map[string]State {
 			name:        "q" + strconv.Itoa(i+1),
 			isFinal:     false,
 			isInitial:   false,
-			transitions: make(map[string]State),
+			transitions: make(map[string]string),
 		}
 	}
 	return states
@@ -51,12 +50,9 @@ func inputTransitions() {
 		var inpString string
 		var destinationState string
 		for j := 0; j < k; j++ {
-			// fmt.Scanf("%s %s\n", &inpString, &destinationState)
-			fmt.Scanf("%s\n", &inpString)
-			fmt.Scanf("%s\n", &destinationState)
+			fmt.Scanf("%s %s\n", &inpString, &destinationState)
 			//TODO: Check if input string and destination state is valid before assigning
-			states[getStateNameFromID(i)].transitions[inpString] = states[destinationState]
-			fmt.Println(states)
+			states[getStateNameFromID(i)].transitions[inpString] = destinationState
 		}
 	}
 }
