@@ -30,6 +30,7 @@ func main() {
 
 func initStates() map[string]State {
 	states := make(map[string]State)
+	fmt.Print("The states are: ")
 	for i := 0; i < n; i++ {
 		states["q"+strconv.Itoa(i+1)] = State{
 			name:        "q" + strconv.Itoa(i+1),
@@ -37,7 +38,9 @@ func initStates() map[string]State {
 			isInitial:   false,
 			transitions: make(map[string]string),
 		}
+		fmt.Print("q" + strconv.Itoa(i+1) + ", ")
 	}
+	fmt.Println()
 	return states
 }
 
