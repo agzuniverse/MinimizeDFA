@@ -54,8 +54,14 @@ func inputTransitions() {
 		var destinationState string
 		for j := 0; j < k; j++ {
 			fmt.Scanf("%s %s\n", &inpString, &destinationState)
-			//TODO: Check if input string and destination state is valid before assigning
-			states[getStateNameFromID(i)].transitions[inpString] = destinationState
+			//TODO: Check if input string is valid
+			_, stateExists := states[destinationState]
+			if stateExists {
+				states[getStateNameFromID(i)].transitions[inpString] = destinationState
+			} else {
+				fmt.Println("Invalid state")
+				j--
+			}
 		}
 	}
 }
