@@ -31,4 +31,5 @@ func main() {
 	states = initStates()
 	inputTransitions()
 	getInitialState()
+	getFinalStates()
 }

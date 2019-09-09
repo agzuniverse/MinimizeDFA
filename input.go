@@ -76,6 +76,24 @@ func getInitialState() {
 	}
 }
 
+func getFinalStates() {
+	var n int
+	var finalState string
+	fmt.Println("Enter number of final states")
+	fmt.Scanf("%d\n", &n)
+	fmt.Printf("Enter %d final states\n", n)
+	for i := 0; i < n; i++ {
+		fmt.Scanf("%s\n", &finalState)
+		state, exists := states[finalState]
+		if !exists {
+			fmt.Println("Invalid state")
+			i--
+			continue
+		}
+		state.isFinal = true
+	}
+}
+
 func getStateNameFromID(i int) string {
 	return "q" + strconv.Itoa(i+1)
 }
