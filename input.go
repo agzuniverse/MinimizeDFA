@@ -61,6 +61,21 @@ func inputTransitions() {
 	}
 }
 
+func getInitialState() {
+	fmt.Println("Enter inital state")
+	var inpState string
+	for {
+		fmt.Scanf("%s\n", &inpState)
+		state, exists := states[inpState]
+		if !exists {
+			fmt.Println("Invalid state")
+			continue
+		}
+		state.isInitial = true
+		break
+	}
+}
+
 func getStateNameFromID(i int) string {
 	return "q" + strconv.Itoa(i+1)
 }

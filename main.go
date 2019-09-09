@@ -30,4 +30,5 @@ func main() {
 	states = make(map[string]*State)
 	states = initStates()
 	inputTransitions()
+	getInitialState()
 }
