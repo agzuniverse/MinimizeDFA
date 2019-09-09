@@ -14,13 +14,18 @@ type State struct {
 }
 
 // Global variables
-var inputSymbols string
+var inputSymbols map[rune]bool
 var n int
 var states map[string]*State
 
 func main() {
 	fmt.Println("Enter input symbols as a string (Each character is treated as an individual input symbol)")
-	fmt.Scanf("%s\n", &inputSymbols)
+	var inpSymb string
+	inputSymbols := make(map[rune]bool)
+	fmt.Scanf("%s\n", &inpSymb)
+	for _, ch := range inpSymb {
+		inputSymbols[ch] = true
+	}
 	fmt.Print("Enter number of states\n")
 	fmt.Scanf("%d\n", &n)
 	states = make(map[string]*State)
