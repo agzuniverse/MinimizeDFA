@@ -96,5 +96,5 @@ func getFinalStates() {
 }
 
 func getStateNameFromID(i int) string {
-	return "q" + strconv.Itoa(i+1)
+	return "q" + strconv.Itoa(i)
 }
