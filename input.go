@@ -72,6 +72,7 @@ func getInitialState() {
 			continue
 		}
 		state.isInitial = true
+		initialState = state
 		break
 	}
 }
