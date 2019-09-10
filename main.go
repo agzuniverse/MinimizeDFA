@@ -17,6 +17,7 @@ var inputSymbols map[rune]bool
 var n int
 var states map[string]*State
 var initialState *State
+var mat [][]bool
 
 func main() {
 	fmt.Println("Enter input symbols as a string (Each character is treated as an individual input symbol)")
@@ -33,4 +34,5 @@ func main() {
 	inputTransitions()
 	getInitialState()
 	getFinalStates()
+	initialProcessing()
 }
