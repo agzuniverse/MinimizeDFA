@@ -7,13 +7,23 @@ func initialProcessing() {
 	for i := range mat {
 		mat[i] = make([]bool, n)
 	}
-	// Final and non-final states will never be equivalent
-	// Also the same state appearing in both row and column should not cause it to be removed
+	// Rows start from q1 and end at qn-1, columns start from q0 and end at qn-2
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
-			if (i == j) || (states[getStateNameFromID(i)].isFinal && !states[getStateNameFromID(j)].isFinal) {
+			if i <= j {
 				mat[i][j] = true
-				mat[j][i] = true
+			}
+		}
+	}
+	// Final and non-final states will never be equivalent
+	for i := 1; i <= n-1; i++ {
+		for j := 0; j <= n-2; j++ {
+			if states[getStateNameFromID(i)].isFinal && !states[getStateNameFromID(j)].isFinal {
+				if i > j {
+					mat[i][j] = true
+				} else {
+					mat[j][i] = true
+				}
 			}
 		}
 	}

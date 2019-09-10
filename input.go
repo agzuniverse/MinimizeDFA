@@ -6,6 +6,7 @@ import (
 	"strconv"
 )
 
+//TODO: non-integer where an integer input is expected should not crash the program
 func initStates() map[string]*State {
 	states := make(map[string]*State)
 	fmt.Print("The states are: ")
