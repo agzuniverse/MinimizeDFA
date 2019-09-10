@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // State represents a single state in the DFA
@@ -35,4 +36,12 @@ func main() {
 	getInitialState()
 	getFinalStates()
 	minimize()
+}
+
+func getIDfromStateName(name string) (int, error) {
+	return strconv.Atoi(name[1:])
+}
+
+func getStateNameFromID(i int) string {
+	return "q" + strconv.Itoa(i)
 }

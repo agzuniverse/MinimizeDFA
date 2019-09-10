@@ -87,7 +87,3 @@ func getFinalStates() {
 		state.isFinal = true
 	}
 }
-
-func getStateNameFromID(i int) string {
-	return "q" + strconv.Itoa(i)
-}
