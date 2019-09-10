@@ -27,12 +27,33 @@ func minimize() {
 			}
 		}
 	}
-	fmt.Println(mat)
-	for i := 1; i <= n-1; i++ {
-		for j := 0; j <= n-2; j++ {
-			if !mat[i][j] {
-				//TODO: Myhill Nerode theorem step 2
+	// Iterate until no pair of states can be crossed out
+	for {
+		flag := false
+		for i := 1; i <= n-1; i++ {
+			for j := 0; j <= n-2; j++ {
+				if !mat[i][j] {
+					state1 := states[getStateNameFromID(i)]
+					state2 := states[getStateNameFromID(j)]
+					for k := range inputSymbols {
+						id1, _ := getIDfromStateName(state1.transitions[k].name)
+						id2, _ := getIDfromStateName(state2.transitions[k].name)
+						if id1 == id2 {
+							continue
+						}
+						if ((id1 > id2) && (mat[id1][id2])) || (id1 < id2 && mat[id2][id1]) {
+							mat[i][j] = true
+							fmt.Printf("Row %d column %d\n", i, j)
+							flag = true
+							break
+						}
+					}
+				}
 			}
 		}
+		if !flag {
+			break
+		}
 	}
+	fmt.Println(mat)
 }
