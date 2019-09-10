@@ -34,5 +34,5 @@ func main() {
 	inputTransitions()
 	getInitialState()
 	getFinalStates()
-	initialProcessing()
+	minimize()
 }

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func initialProcessing() {
+func minimize() {
 	mat = make([][]bool, n)
 	for i := range mat {
 		mat[i] = make([]bool, n)
