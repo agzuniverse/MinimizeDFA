@@ -28,4 +28,11 @@ func minimize() {
 		}
 	}
 	fmt.Println(mat)
+	for i := 1; i <= n-1; i++ {
+		for j := 0; j <= n-2; j++ {
+			if !mat[i][j] {
+				//TODO: Myhill Nerode theorem step 2
+			}
+		}
+	}
 }

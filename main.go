@@ -9,7 +9,7 @@ type State struct {
 	name        string
 	isInitial   bool
 	isFinal     bool
-	transitions map[string]*State
+	transitions map[rune]*State
 }
 
 // Global variables

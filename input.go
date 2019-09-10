@@ -15,7 +15,7 @@ func initStates() map[string]*State {
 			name:        getStateNameFromID(i),
 			isFinal:     false,
 			isInitial:   false,
-			transitions: make(map[string]*State),
+			transitions: make(map[rune]*State),
 		}
 		fmt.Print(getStateNameFromID(i) + ", ")
 	}
@@ -37,26 +37,18 @@ func validateInputString(in string) (bool, error) {
 
 func inputTransitions() {
 	for i := 0; i < n; i++ {
-		fmt.Printf("Enter number of state transitions from %s\n", getStateNameFromID(i))
-		var k int
-		fmt.Scanf("%d\n", &k)
-		fmt.Printf("Enter %d transitions as <input string> <destination state>\n", k)
-		var inpString string
 		var destinationState string
-		for j := 0; j < k; j++ {
-			fmt.Scanf("%s %s\n", &inpString, &destinationState)
-			inpStringIsValid, err := validateInputString(inpString)
-			if !inpStringIsValid {
-				fmt.Println(err)
-				j--
-				continue
-			}
-			_, stateExists := states[destinationState]
-			if stateExists {
-				states[getStateNameFromID(i)].transitions[inpString] = states[destinationState]
-			} else {
-				fmt.Println("Invalid state")
-				j--
+		for k := range inputSymbols {
+			fmt.Printf("Enter transition from %s when given input %s\n", getStateNameFromID(i), strconv.QuoteRune(k))
+			for {
+				fmt.Scanf("%s\n", &destinationState)
+				_, stateExists := states[destinationState]
+				if stateExists {
+					states[getStateNameFromID(i)].transitions[k] = states[destinationState]
+					break
+				} else {
+					fmt.Println("Invalid state")
+				}
 			}
 		}
 	}
