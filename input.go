@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
 
 //TODO: non-integer where an integer input is expected should not crash the program
@@ -15,7 +14,7 @@ func initStates() map[string]*State {
 			name:        getStateNameFromID(i),
 			isFinal:     false,
 			isInitial:   false,
-			transitions: make(map[rune]*State),
+			transitions: make(map[string]*State),
 		}
 		fmt.Print(getStateNameFromID(i) + ", ")
 	}
@@ -27,8 +26,7 @@ func validateInputString(in string) (bool, error) {
 	if len(in) != 1 {
 		return false, errors.New("Input string must be a single character")
 	}
-	runes := []rune(in)
-	_, exists := inputSymbols[runes[0]]
+	_, exists := inputSymbols[in]
 	if !exists {
 		return false, errors.New("Invalid input string")
 	}
@@ -39,7 +37,7 @@ func inputTransitions() {
 	for i := 0; i < n; i++ {
 		var destinationState string
 		for k := range inputSymbols {
-			fmt.Printf("Enter transition from %s when given input %s\n", getStateNameFromID(i), strconv.QuoteRune(k))
+			fmt.Printf("Enter transition from %s when given input %s\n", getStateNameFromID(i), k)
 			for {
 				fmt.Scanf("%s\n", &destinationState)
 				_, stateExists := states[destinationState]
