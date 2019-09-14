@@ -26,7 +26,7 @@ func main() {
 	inputSymbols = make(map[string]bool)
 	fmt.Scanf("%s\n", &inpSymb)
 	for _, ch := range inpSymb {
-		inputSymbols[strconv.QuoteRune(ch)] = true
+		inputSymbols[string(ch)] = true
 	}
 	fmt.Print("Enter number of states\n")
 	fmt.Scanf("%d\n", &n)
