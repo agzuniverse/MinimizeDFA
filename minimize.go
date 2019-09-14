@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func minimize() {
 	mat = make([][]bool, n)
@@ -35,6 +37,13 @@ func minimize() {
 				if !mat[i][j] {
 					state1 := states[getStateNameFromID(i)]
 					state2 := states[getStateNameFromID(j)]
+					// keys := make([]rune, len(inputSymbols))
+					// q := 0
+					// for key := range inputSymbols {
+					// 	keys[q] = key
+					// 	q++
+					// }
+					// sort.Int
 					for k := range inputSymbols {
 						id1, _ := getIDfromStateName(state1.transitions[k].name)
 						id2, _ := getIDfromStateName(state2.transitions[k].name)

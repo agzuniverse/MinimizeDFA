@@ -35,6 +35,7 @@ func main() {
 	inputTransitions()
 	getInitialState()
 	getFinalStates()
+	// fmt.Println(states)
 	minimize()
 }
 
