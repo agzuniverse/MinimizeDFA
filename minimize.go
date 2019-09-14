@@ -13,7 +13,7 @@ func minimize() {
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
 			if i <= j {
-				mat[i][j] = true
+				mat[i][j] = true // Never consider the upper triangle of the matrix
 			}
 		}
 	}
@@ -30,20 +30,14 @@ func minimize() {
 		}
 	}
 	// Iterate until no pair of states can be crossed out
+	var flag bool
 	for {
-		flag := false
+		flag = false
 		for i := 1; i <= n-1; i++ {
 			for j := 0; j <= n-2; j++ {
 				if !mat[i][j] {
 					state1 := states[getStateNameFromID(i)]
 					state2 := states[getStateNameFromID(j)]
-					// keys := make([]rune, len(inputSymbols))
-					// q := 0
-					// for key := range inputSymbols {
-					// 	keys[q] = key
-					// 	q++
-					// }
-					// sort.Int
 					for k := range inputSymbols {
 						id1, _ := getIDfromStateName(state1.transitions[k].name)
 						id2, _ := getIDfromStateName(state2.transitions[k].name)
@@ -52,7 +46,6 @@ func minimize() {
 						}
 						if ((id1 > id2) && (mat[id1][id2])) || (id1 < id2 && mat[id2][id1]) {
 							mat[i][j] = true
-							fmt.Printf("Row %d column %d\n", i, j)
 							flag = true
 							break
 						}

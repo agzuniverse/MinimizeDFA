@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"sort"
 )
 
 //TODO: non-integer where an integer input is expected should not crash the program
@@ -34,9 +35,16 @@ func validateInputString(in string) (bool, error) {
 }
 
 func inputTransitions() {
+	keys := make([]string, len(inputSymbols))
+	q := 0
+	for key := range inputSymbols {
+		keys[q] = key
+		q++
+	}
+	sort.Strings(keys)
 	for i := 0; i < n; i++ {
 		var destinationState string
-		for k := range inputSymbols {
+		for _, k := range keys {
 			fmt.Printf("Enter transition from %s when given input %s\n", getStateNameFromID(i), k)
 			for {
 				fmt.Scanf("%s\n", &destinationState)
