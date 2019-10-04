@@ -58,4 +58,21 @@ func minimize() {
 		}
 	}
 	fmt.Println(mat)
+	for i := 1; i <= n-1; i++ {
+		for j := 0; j <= n-2; j++ {
+			if !mat[i][j] {
+				fmt.Printf("%s and %s are non-distinguishable\n", getStateNameFromID(i), getStateNameFromID(j))
+				states[getStateNameFromID(i)+","+getStateNameFromID(j)] = &State{
+					name:        getStateNameFromID(i) + "," + getStateNameFromID(j),
+					isInitial:   states[getStateNameFromID(i)].isInitial,
+					isFinal:     states[getStateNameFromID(i)].isFinal,
+					transitions: states[getStateNameFromID(i)].transitions,
+				}
+				delete(states, getStateNameFromID(i))
+				delete(states, getStateNameFromID(j))
+			}
+		}
+	}
+	fmt.Println("\nNew transition table:")
+	printTransitionTable()
 }
